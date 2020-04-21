@@ -20,6 +20,23 @@ This notifier uses their APIs for checking for new job listings and notifies to 
 
 ## Usage
 ### Within a Docker container
+#### From Docker Hub Image
+This will pull the image from [Docker Hub](https://hub.docker.com/) and run the image with the provided configuration for web hooks as below. One can provide only the Webhook URL or both the Webhook ID and token.
+
+```sh
+# Providing Discord Webhook URL
+$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> knutkirkhorn/job-listing-notifier
+
+# Providing job location and job type
+$ docker run -d \
+    -e DISCORD_WEBHOOK_URL=<URL_HERE> \
+    -e JOB_LOCATION="Trondheim"
+    -e ABAKUS_JOB_TYPE="full_time" \
+    -e ONLINE_JOB_TYPE="Fastjobb" \
+    knutkirkhorn/job-listing-notifier
+```
+
+#### From source code
 ```sh
 # Build container from source
 $ docker build -t job-listing-notifier .

@@ -1,6 +1,8 @@
 # job-listing-notifier
 > 📰⏰ Notifier for job listings
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/knutkirkhorn/job-listing-notifier)](https://hub.docker.com/r/knutkirkhorn/job-listing-notifier) [![Docker Image Size](https://badgen.net/docker/size/knutkirkhorn/job-listing-notifier)](https://hub.docker.com/r/knutkirkhorn/job-listing-notifier) [![Build Status](https://travis-ci.com/Knutakir/job-listing-notifier.svg?branch=master)](https://travis-ci.com/Knutakir/job-listing-notifier)
+
 Notify for new published job listings on the student organization pages for Abakus ([@webkom](https://github.com/webkom)), Online ([@dotkom](https://github.com/dotkom)) and TIHLDE ([@tihlde](https://github.com/tihlde)).
 This notifier uses their APIs for checking for new job listings and notifies to a Discord channel using [Discord Webhooks](https://discordapp.com/developers/docs/resources/webhook). It does support filtering on location and job type.
 

@@ -1,0 +1,39 @@
+{
+  "name": "job-listing-notifier",
+  "version": "1.0.0",
+  "description": "Notifier for job listings",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Knutakir/job-listing-notifier.git"
+  },
+  "keywords": [
+    "job",
+    "listing",
+    "notifier",
+    "docker",
+    "discord"
+  ],
+  "author": "Knut Kirkhorn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Knutakir/job-listing-notifier/issues"
+  },
+  "homepage": "https://github.com/Knutakir/job-listing-notifier#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "got": "^11.0.1",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  }
+}

@@ -106,4 +106,4 @@ Provide these with the docker run command or store these in a `.env` file. Only 
 ![TIHLDE notifiction](https://raw.githubusercontent.com/Knutakir/job-listing-notifier/master/media/tihlde.png)
 
 ## License
-MIT © [Knut Kirkhorn](LICENSE)
+MIT © [Knut Kirkhorn](https://github.com/Knutakir/job-listing-notifier/blob/master/LICENSE)

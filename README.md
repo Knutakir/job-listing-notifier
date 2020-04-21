@@ -4,6 +4,11 @@
 Notify for new published job listings on the student organization pages for Abakus ([@webkom](https://github.com/webkom)), Online ([@dotkom](https://github.com/dotkom)) and TIHLDE ([@tihlde](https://github.com/tihlde)).
 This notifier uses their APIs for checking for new job listings and notifies to a Discord channel using [Discord Webhooks](https://discordapp.com/developers/docs/resources/webhook). It does support filtering on location and job type.
 
+<div align="center">
+	<img src="https://raw.githubusercontent.com/Knutakir/job-listing-notifier/master/media/top-image.png" alt="Job listing notification example from Abakus">
+	<p>See <a href="https://github.com/Knutakir/job-listing-notifier#Screenshots">screenshots</a> for more example images.</p>
+</div>
+
 ## Listing providers
 | Name | URL | GitHub repository |
 | --- | --- | --- |
@@ -94,6 +99,11 @@ Provide these with the docker run command or store these in a `.env` file. Only 
 - `DEADLINE_TIME_FORMAT` ***(optional)***
     - The time format for the deadline in the Discord message.
     - Default: `dddd MMMM Do YYYY HH:mm`
+
+## Screenshots
+![Abakus notifiction](https://raw.githubusercontent.com/Knutakir/job-listing-notifier/master/media/abakus.png)
+![Online notifiction](https://raw.githubusercontent.com/Knutakir/job-listing-notifier/master/media/online.png)
+![TIHLDE notifiction](https://raw.githubusercontent.com/Knutakir/job-listing-notifier/master/media/tihlde.png)
 
 ## License
 MIT © [Knut Kirkhorn](LICENSE)

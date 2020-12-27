@@ -73,7 +73,8 @@ Provide these with the docker run command or store these in a `.env` file. Only 
 - `DISCORD_WEBHOOK_TOKEN`
     - Token for the Discord Webhook
 - `WAIT_TIMEOUT` ***(optional)***
-    - The time interval between each check to the APIs.
+    - The time interval in milliseconds between each check to the APIs.
+    - Default: `3600000` (60 minutes)
 - `ABAKUS_API_URL` ***(optional)***
     - The URL to Abakus' listings API
     - Default: `https://lego.abakus.no/api/v1/joblistings/`

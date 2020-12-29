@@ -1,13 +1,23 @@
 const Discord = require('discord.js');
-const moment = require('moment');
+const dayjs = require('dayjs');
+const advancedFormat = require('dayjs/plugin/advancedFormat');
 const abakus = require('./providers/abakus');
 const tihlde = require('./providers/tihlde');
 const online = require('./providers/online');
 const config = require('./config');
 const {discordWebhookUrl, discordWebhookID, discordWebhookToken} = config;
 
+// Load dayjs locale if it's not the default `en` (English)
+if (config.deadlineTimeLocale !== 'en') {
+    // eslint-disable-next-line import/no-dynamic-require, global-require
+    require(`dayjs/locale/${config.deadlineTimeLocale}`);
+}
+
+// Use extended formatting
+dayjs.extend(advancedFormat);
+
 // Set the locale for the deadline
-moment.locale(config.deadlineTimeLocale);
+dayjs.locale(config.deadlineTimeLocale);
 
 // Check if either Discord Webhook URL or Discord Webhook ID and token is provided
 if (!(discordWebhookUrl || (discordWebhookID !== '' && discordWebhookToken !== ''))) {
@@ -43,7 +53,7 @@ const embedChatIcons = {
     while (true) {
         try {
             // Log the time of the job search
-            console.log('Searching for jobs at: ', new Date());
+            console.log('Searching for jobs at:', new Date());
 
             // Retrieve all new job listings at the websites for Abakus, Online and TIHLDE with the specified configurations
             const abakusListingsPromise = abakus.getNewJobListings();
@@ -68,7 +78,7 @@ const embedChatIcons = {
                     .setThumbnail(embedChatIcons[jobListing.source])
                     .addField('Title', jobListing.title)
                     .addField('Company', jobListing.company)
-                    .addField('Deadline', moment(jobListing.deadline).format(config.deadlineTimeFormat))
+                    .addField('Deadline', dayjs(jobListing.deadline).format(config.deadlineTimeFormat))
                     .addField('URL', `View the job listing [here](${jobListing.url})`);
 
                 discordHookClient.send(embedMessage);

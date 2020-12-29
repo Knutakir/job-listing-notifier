@@ -26,10 +26,10 @@
   },
   "homepage": "https://github.com/Knutakir/job-listing-notifier#readme",
   "dependencies": {
+    "dayjs": "^1.9.8",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
-    "got": "^11.0.1",
-    "moment": "^2.24.0"
+    "got": "^11.0.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

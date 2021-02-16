@@ -30,7 +30,7 @@ $ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> knutkirkhorn/job-listing-notif
 # Providing job location and job type
 $ docker run -d \
     -e DISCORD_WEBHOOK_URL=<URL_HERE> \
-    -e JOB_LOCATION="Trondheim"
+    -e JOB_LOCATION="Trondheim" \
     -e ABAKUS_JOB_TYPE="full_time" \
     -e ONLINE_JOB_TYPE="Fastjobb" \
     knutkirkhorn/job-listing-notifier
@@ -47,7 +47,7 @@ $ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> job-listing-notifier
 # Providing job location and job type
 $ docker run -d \
     -e DISCORD_WEBHOOK_URL=<URL_HERE> \
-    -e JOB_LOCATION="Trondheim"
+    -e JOB_LOCATION="Trondheim" \
     -e ABAKUS_JOB_TYPE="full_time" \
     -e ONLINE_JOB_TYPE="Fastjobb" \
     job-listing-notifier

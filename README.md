@@ -1,13 +1,13 @@
 # job-listing-notifier
 > 📰⏰ Notifier for job listings
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/knutkirkhorn/job-listing-notifier)](https://hub.docker.com/r/knutkirkhorn/job-listing-notifier) [![Docker Image Size](https://badgen.net/docker/size/knutkirkhorn/job-listing-notifier)](https://hub.docker.com/r/knutkirkhorn/job-listing-notifier) [![Build Status](https://travis-ci.com/Knutakir/job-listing-notifier.svg?branch=master)](https://travis-ci.com/Knutakir/job-listing-notifier)
+[![Docker Pulls](https://img.shields.io/docker/pulls/knutkirkhorn/job-listing-notifier)](https://hub.docker.com/r/knutkirkhorn/job-listing-notifier) [![Docker Image Size](https://badgen.net/docker/size/knutkirkhorn/job-listing-notifier)](https://hub.docker.com/r/knutkirkhorn/job-listing-notifier) [![Build Status](https://travis-ci.com/Knutakir/job-listing-notifier.svg?branch=main)](https://travis-ci.com/Knutakir/job-listing-notifier)
 
 Notify for new published job listings on the student organization pages for Abakus ([@webkom](https://github.com/webkom)), Online ([@dotkom](https://github.com/dotkom)) and TIHLDE ([@tihlde](https://github.com/tihlde)).
 This notifier uses their APIs for checking for new job listings and notifies to a Discord channel using [Discord Webhooks](https://discord.com/developers/docs/resources/webhook). It does support filtering on location and job type.
 
 <div align="center">
-	<img src="https://raw.githubusercontent.com/Knutakir/job-listing-notifier/master/media/top-image.png" alt="Job listing notification example from Abakus">
+	<img src="https://raw.githubusercontent.com/Knutakir/job-listing-notifier/main/media/top-image.png" alt="Job listing notification example from Abakus">
 	<p>See <a href="https://github.com/Knutakir/job-listing-notifier#Screenshots">screenshots</a> for more example images.</p>
 </div>
 
@@ -121,9 +121,9 @@ Provide these with the docker run command or store these in a `.env` file. Only 
     - Default: `dddd MMMM Do YYYY HH:mm`
 
 ## Screenshots
-![Abakus notifiction](https://raw.githubusercontent.com/Knutakir/job-listing-notifier/master/media/abakus.png)
-![Online notifiction](https://raw.githubusercontent.com/Knutakir/job-listing-notifier/master/media/online.png)
-![TIHLDE notifiction](https://raw.githubusercontent.com/Knutakir/job-listing-notifier/master/media/tihlde.png)
+![Abakus notifiction](https://raw.githubusercontent.com/Knutakir/job-listing-notifier/main/media/abakus.png)
+![Online notifiction](https://raw.githubusercontent.com/Knutakir/job-listing-notifier/main/media/online.png)
+![TIHLDE notifiction](https://raw.githubusercontent.com/Knutakir/job-listing-notifier/main/media/tihlde.png)
 
 ## License
-MIT © [Knut Kirkhorn](https://github.com/Knutakir/job-listing-notifier/blob/master/LICENSE)
+MIT © [Knut Kirkhorn](https://github.com/Knutakir/job-listing-notifier/blob/main/LICENSE)

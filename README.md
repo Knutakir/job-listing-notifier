@@ -16,7 +16,7 @@ This notifier uses their APIs for checking for new job listings and notifies to 
 | --- | --- | --- |
 | [Abakus](https://abakus.no) | [API](https://lego.abakus.no/api/v1/) | [@webkom/lego](https://github.com/webkom/lego) |
 | [Online](https://online.ntnu.no) | [API](https://online.ntnu.no/api/v1/) | [@dotkom/onlineweb4](https://github.com/dotkom/onlineweb4) |
-| [TIHLDE](https://tihlde.org) | [API](https://tihlde.org/api/v1/) | [@tihlde/API](https://github.com/tihlde/API) |
+| [TIHLDE](https://tihlde.org) | [API](https://api.tihlde.org/api/v1/) | [@TIHLDE/Lepton](https://github.com/TIHLDE/Lepton) |
 
 ## Usage
 ### Within a Docker container

@@ -13,7 +13,7 @@ module.exports = {
     waitTimeout: process.env.WAIT_TIMEOUT || HOUR_IN_MILLESECONDS,
     abakusAPIUrl: process.env.ABAKUS_API_URL || 'https://lego.abakus.no/api/v1/joblistings/',
     onlineAPIUrl: process.env.ONLINE_API_URL || 'https://online.ntnu.no/api/v1/career/?format=json',
-    tihldeAPIUrl: process.env.TIHLDE_API_URL || 'https://tihlde.org/api/v1/jobpost/?format=json',
+    tihldeAPIUrl: process.env.TIHLDE_API_URL || 'https://api.tihlde.org/api/v1/jobpost/?format=json',
     abakusListingUrlPath: process.env.ABAKUS_LISTING_URL_PATH || 'https://abakus.no/joblistings/',
     onlineListingUrlPath: process.env.ONLINE_LISTING_URL_PATH || 'https://online.ntnu.no/careeropportunity/',
     tihldeListingUrlPath: process.env.TIHLDE_LISTING_URL_PATH || 'https://tihlde.org/karriere/',

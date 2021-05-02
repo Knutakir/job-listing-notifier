@@ -5,6 +5,7 @@ const abakus = require('./providers/abakus');
 const tihlde = require('./providers/tihlde');
 const online = require('./providers/online');
 const config = require('./config');
+
 const {discordWebhookUrl, discordWebhookID, discordWebhookToken} = config;
 
 // Load dayjs locale if it's not the default `en` (English)
@@ -60,6 +61,7 @@ const embedChatIcons = {
             const onlineListingsPromise = online.getNewJobListings();
             const tihldeListingsPromise = tihlde.getNewJobListings();
 
+            // eslint-disable-next-line no-await-in-loop
             const jobListingsArray = await Promise.all([abakusListingsPromise, onlineListingsPromise, tihldeListingsPromise]);
             const jobListings = jobListingsArray.reduce((previous, current) => {
                 // Check if current element is not an array
@@ -87,6 +89,7 @@ const embedChatIcons = {
             console.log(error);
         } finally {
             try {
+                // eslint-disable-next-line no-await-in-loop
                 await wait(config.waitTimeout);
             } catch (timeoutError) {
                 console.log(timeoutError);

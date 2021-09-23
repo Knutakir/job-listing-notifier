@@ -1,6 +1,6 @@
-const got = require('got');
-const config = require('../config');
-const {httpHeader} = require('../util');
+import got from 'got';
+import config from '../config.js';
+import util from '../util.js';
 
 const {jobLocation, onlineJobType} = config;
 const apiUrl = config.onlineAPIUrl;
@@ -11,7 +11,7 @@ const listingUrlPath = config.onlineListingUrlPath;
 let oldJobListings = [];
 
 async function getNewJobListings() {
-    const response = await got(apiUrl, {headers: httpHeader});
+    const response = await got(apiUrl, {headers: util.httpHeader});
     const body = JSON.parse(response.body);
     const jobListings = body.results;
 
@@ -53,4 +53,6 @@ async function getNewJobListings() {
     return newJobListings;
 }
 
-module.exports.getNewJobListings = getNewJobListings;
+export default {
+    getNewJobListings
+};

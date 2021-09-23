@@ -1,40 +1,25 @@
-const Discord = require('discord.js');
-const dayjs = require('dayjs');
-const advancedFormat = require('dayjs/plugin/advancedFormat');
-const abakus = require('./providers/abakus');
-const tihlde = require('./providers/tihlde');
-const online = require('./providers/online');
-const config = require('./config');
-
-const {discordWebhookUrl, discordWebhookID, discordWebhookToken} = config;
-
-// Load dayjs locale if it's not the default `en` (English)
-if (config.deadlineTimeLocale !== 'en') {
-    // eslint-disable-next-line import/no-dynamic-require, global-require
-    require(`dayjs/locale/${config.deadlineTimeLocale}`);
-}
+import {MessageEmbed, WebhookClient} from 'discord.js';
+import dayjs from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat.js';
+// eslint-disable-next-line import/no-unresolved
+import {setTimeout} from 'timers/promises';
+import abakus from './providers/abakus.js';
+import tihlde from './providers/tihlde.js';
+import online from './providers/online.js';
+import config from './config.js';
 
 // Use extended formatting
 dayjs.extend(advancedFormat);
 
-// Set the locale for the deadline
-dayjs.locale(config.deadlineTimeLocale);
+const {discordWebhookUrl, discordWebhookId, discordWebhookToken} = config;
 
 // Check if either Discord Webhook URL or Discord Webhook ID and token is provided
-if (!(discordWebhookUrl || (discordWebhookID !== '' && discordWebhookToken !== ''))) {
+if (!(discordWebhookUrl || (discordWebhookId !== '' && discordWebhookToken !== ''))) {
     throw new Error('You need to specify either Discord Webhook URL or both Discord Webhook ID and token!');
 }
 
-// Retrieve the ID and token from the Webhook URL
-// This is from the Discord Webhook URL format:
-// 'https://discordapp.com/api/webhooks/<ID_HERE>/<TOKEN_HERE>'
-// If the Webhook URL is empty get the values from the provided ID and token
-const [webhookID, webhookToken] = discordWebhookUrl ? discordWebhookUrl.split('/').splice(5, 2) : [discordWebhookID, discordWebhookToken];
-
-const discordHookClient = new Discord.WebhookClient(webhookID, webhookToken);
-
-// Wait for a specified time (milliseconds)
-const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+const webhookClient = discordWebhookUrl ? new WebhookClient({url: discordWebhookUrl}) : new WebhookClient({id: discordWebhookId, token: discordWebhookToken});
+const webhookUsername = 'Job Listing Notifier';
 
 // Color for the left border on embed chat messages
 const embedChatColors = {
@@ -49,7 +34,19 @@ const embedChatIcons = {
     tihlde: config.tihldeLogoUrl
 };
 
+async function initializeLocale() {
+    // Load dayjs locale if it's not the default `en` (English)
+    if (config.deadlineTimeLocale !== 'en') {
+        await import(`dayjs/locale/${config.deadlineTimeLocale}.js`);
+    }
+
+    // Set the locale for the deadline
+    dayjs.locale(config.deadlineTimeLocale);
+}
+
 (async () => {
+    await initializeLocale();
+
     // Make it run forever
     while (true) {
         try {
@@ -73,8 +70,9 @@ const embedChatIcons = {
             }, []);
 
             // Loop all job listings and send messages one by one
-            jobListings.forEach(jobListing => {
-                const embedMessage = new Discord.MessageEmbed()
+            for (let i = 0; i < jobListings.length; i++) {
+                const jobListing = jobListings[i];
+                const embedMessage = new MessageEmbed()
                     .setColor(embedChatColors[jobListing.source])
                     .setTitle('📰 **New Listing** 📰')
                     .setThumbnail(embedChatIcons[jobListing.source])
@@ -83,17 +81,17 @@ const embedChatIcons = {
                     .addField('Deadline', dayjs(jobListing.deadline).format(config.deadlineTimeFormat))
                     .addField('URL', `View the job listing [here](${jobListing.url})`);
 
-                discordHookClient.send(embedMessage);
-            });
+                // eslint-disable-next-line no-await-in-loop
+                await webhookClient.send({
+                    username: webhookUsername,
+                    embeds: [embedMessage]
+                });
+            }
         } catch (error) {
             console.log(error);
         } finally {
-            try {
-                // eslint-disable-next-line no-await-in-loop
-                await wait(config.waitTimeout);
-            } catch (timeoutError) {
-                console.log(timeoutError);
-            }
+            // eslint-disable-next-line no-await-in-loop
+            await setTimeout(config.waitTimeout);
         }
     }
 })();

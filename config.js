@@ -1,4 +1,4 @@
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 
 // Load the stored variables from `.env` file into process.env
 dotenv.config();
@@ -6,9 +6,9 @@ dotenv.config();
 // Default is 60 minutes for the wait timeout
 const HOUR_IN_MILLESECONDS = 3600000;
 
-module.exports = {
+export default {
     discordWebhookUrl: process.env.DISCORD_WEBHOOK_URL || '',
-    discordWebhookID: process.env.DISCORD_WEBHOOK_ID || '',
+    discordWebhookId: process.env.DISCORD_WEBHOOK_ID || '',
     discordWebhookToken: process.env.DISCORD_WEBHOOK_TOKEN || '',
     waitTimeout: process.env.WAIT_TIMEOUT || HOUR_IN_MILLESECONDS,
     abakusAPIUrl: process.env.ABAKUS_API_URL || 'https://lego.abakus.no/api/v1/joblistings/',

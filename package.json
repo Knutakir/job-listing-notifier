@@ -1,6 +1,7 @@
 {
   "name": "job-listing-notifier",
   "version": "1.0.0",
+  "private": true,
   "description": "Notifier for job listings",
   "main": "index.js",
   "scripts": {

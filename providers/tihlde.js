@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import got from 'got';
 import config from '../config.js';
 import util from '../util.js';

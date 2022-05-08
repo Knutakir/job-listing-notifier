@@ -4,13 +4,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Default is 60 minutes for the wait timeout
-const HOUR_IN_MILLESECONDS = 3600000;
+const HOUR_IN_MILLISECONDS = 3600000;
 
 export default {
     discordWebhookUrl: process.env.DISCORD_WEBHOOK_URL || '',
     discordWebhookId: process.env.DISCORD_WEBHOOK_ID || '',
     discordWebhookToken: process.env.DISCORD_WEBHOOK_TOKEN || '',
-    waitTimeout: process.env.WAIT_TIMEOUT || HOUR_IN_MILLESECONDS,
+    waitTimeout: process.env.WAIT_TIMEOUT || HOUR_IN_MILLISECONDS,
     abakusAPIUrl: process.env.ABAKUS_API_URL || 'https://lego.abakus.no/api/v1/joblistings/',
     onlineAPIUrl: process.env.ONLINE_API_URL || 'https://old.online.ntnu.no/api/v1/career/?format=json',
     tihldeAPIUrl: process.env.TIHLDE_API_URL || 'https://api.tihlde.org/jobposts/?format=json',

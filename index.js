@@ -44,54 +44,52 @@ async function initializeLocale() {
     dayjs.locale(config.deadlineTimeLocale);
 }
 
-(async () => {
-    await initializeLocale();
+await initializeLocale();
 
-    // Make it run forever
-    while (true) {
-        try {
-            // Log the time of the job search
-            console.log('Searching for jobs at:', new Date());
+// Make it run forever
+while (true) {
+    try {
+        // Log the time of the job search
+        console.log('Searching for jobs at:', new Date());
 
-            // Retrieve all new job listings at the websites for Abakus, Online and TIHLDE with the specified configurations
-            const abakusListingsPromise = abakus.getNewJobListings();
-            const onlineListingsPromise = online.getNewJobListings();
-            const tihldeListingsPromise = tihlde.getNewJobListings();
+        // Retrieve all new job listings at the websites for Abakus, Online and TIHLDE with the specified configurations
+        const abakusListingsPromise = abakus.getNewJobListings();
+        const onlineListingsPromise = online.getNewJobListings();
+        const tihldeListingsPromise = tihlde.getNewJobListings();
 
-            // eslint-disable-next-line no-await-in-loop
-            const jobListingsArray = await Promise.all([abakusListingsPromise, onlineListingsPromise, tihldeListingsPromise]);
-            const jobListings = jobListingsArray.reduce((previous, current) => {
-                // Check if current element is not an array
-                if (!Array.isArray(current)) {
-                    return previous;
-                }
-
-                return previous.concat(current);
-            }, []);
-
-            // Loop all job listings and send messages one by one
-            for (let i = 0; i < jobListings.length; i++) {
-                const jobListing = jobListings[i];
-                const embedMessage = new MessageEmbed()
-                    .setColor(embedChatColors[jobListing.source])
-                    .setTitle('📰 **New Listing** 📰')
-                    .setThumbnail(embedChatIcons[jobListing.source])
-                    .addField('Title', jobListing.title)
-                    .addField('Company', jobListing.company)
-                    .addField('Deadline', dayjs(jobListing.deadline).format(config.deadlineTimeFormat))
-                    .addField('URL', `View the job listing [here](${jobListing.url})`);
-
-                // eslint-disable-next-line no-await-in-loop
-                await webhookClient.send({
-                    username: webhookUsername,
-                    embeds: [embedMessage]
-                });
+        // eslint-disable-next-line no-await-in-loop
+        const jobListingsArray = await Promise.all([abakusListingsPromise, onlineListingsPromise, tihldeListingsPromise]);
+        const jobListings = jobListingsArray.reduce((previous, current) => {
+            // Check if current element is not an array
+            if (!Array.isArray(current)) {
+                return previous;
             }
-        } catch (error) {
-            console.log(error);
-        } finally {
+
+            return previous.concat(current);
+        }, []);
+
+        // Loop all job listings and send messages one by one
+        for (let i = 0; i < jobListings.length; i++) {
+            const jobListing = jobListings[i];
+            const embedMessage = new MessageEmbed()
+                .setColor(embedChatColors[jobListing.source])
+                .setTitle('📰 **New Listing** 📰')
+                .setThumbnail(embedChatIcons[jobListing.source])
+                .addField('Title', jobListing.title)
+                .addField('Company', jobListing.company)
+                .addField('Deadline', dayjs(jobListing.deadline).format(config.deadlineTimeFormat))
+                .addField('URL', `View the job listing [here](${jobListing.url})`);
+
             // eslint-disable-next-line no-await-in-loop
-            await setTimeout(config.waitTimeout);
+            await webhookClient.send({
+                username: webhookUsername,
+                embeds: [embedMessage]
+            });
         }
+    } catch (error) {
+        console.log(error);
+    } finally {
+        // eslint-disable-next-line no-await-in-loop
+        await setTimeout(config.waitTimeout);
     }
-})();
+}

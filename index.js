@@ -1,8 +1,8 @@
-import {MessageEmbed, WebhookClient} from 'discord.js';
+import {MessageEmbed} from 'discord.js';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat.js';
-// eslint-disable-next-line import/no-unresolved
 import {setTimeout} from 'timers/promises';
+import discordWebhookWrapper from 'discord-webhook-wrapper';
 import abakus from './providers/abakus.js';
 import tihlde from './providers/tihlde.js';
 import online from './providers/online.js';
@@ -11,14 +11,7 @@ import config from './config.js';
 // Use extended formatting
 dayjs.extend(advancedFormat);
 
-const {discordWebhookUrl, discordWebhookId, discordWebhookToken} = config;
-
-// Check if either Discord Webhook URL or Discord Webhook ID and token is provided
-if (!(discordWebhookUrl || (discordWebhookId !== '' && discordWebhookToken !== ''))) {
-    throw new Error('You need to specify either Discord Webhook URL or both Discord Webhook ID and token!');
-}
-
-const webhookClient = discordWebhookUrl ? new WebhookClient({url: discordWebhookUrl}) : new WebhookClient({id: discordWebhookId, token: discordWebhookToken});
+const webhookClient = discordWebhookWrapper(config);
 const webhookUsername = 'Job Listing Notifier';
 
 // Color for the left border on embed chat messages

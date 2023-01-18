@@ -1,4 +1,5 @@
 # job-listing-notifier
+
 > 📰⏰ Notifier for job listings
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/knutkirkhorn/job-listing-notifier)](https://hub.docker.com/r/knutkirkhorn/job-listing-notifier) [![Docker Image Size](https://badgen.net/docker/size/knutkirkhorn/job-listing-notifier)](https://hub.docker.com/r/knutkirkhorn/job-listing-notifier)
@@ -12,6 +13,7 @@ This notifier uses their APIs for checking for new job listings and notifies to 
 </div>
 
 ## Listing providers
+
 | Name | URL | GitHub repository |
 | --- | --- | --- |
 | [Abakus](https://abakus.no) | [API](https://lego.abakus.no/api/v1/) | [@webkom/lego](https://github.com/webkom/lego) |
@@ -19,8 +21,11 @@ This notifier uses their APIs for checking for new job listings and notifies to 
 | [TIHLDE](https://tihlde.org) | [API](https://api.tihlde.org/) | [@TIHLDE/Lepton](https://github.com/TIHLDE/Lepton) |
 
 ## Usage
+
 ### Within a Docker container
+
 #### From Docker Hub Image
+
 This will pull the image from [Docker Hub](https://hub.docker.com/) and run the image with the provided configuration for web hooks as below. One can provide only the Webhook URL or both the Webhook ID and token.
 
 ```sh
@@ -37,6 +42,7 @@ $ docker run -d \
 ```
 
 #### From source code
+
 ```sh
 # Build container from source
 $ docker build -t job-listing-notifier .
@@ -54,6 +60,7 @@ $ docker run -d \
 ```
 
 ### Outside of a Docker container
+
 ```sh
 # Install
 $ npm install
@@ -63,6 +70,7 @@ $ npm start
 ```
 
 ### Environment variables
+
 Provide these with the docker run command or store these in a `.env` file. Only `DISCORD_WEBHOOK_URL` or both `DISCORD_WEBHOOK_ID` and `DISCORD_WEBHOOK_TOKEN` are required, but other values are recommended to change to its own personal usage.
 
 - `DISCORD_WEBHOOK_URL`
@@ -121,9 +129,7 @@ Provide these with the docker run command or store these in a `.env` file. Only 
     - Default: `dddd MMMM Do YYYY HH:mm`
 
 ## Screenshots
+
 ![Abakus notifiction](https://raw.githubusercontent.com/knutkirkhorn/job-listing-notifier/main/media/abakus.png)
 ![Online notifiction](https://raw.githubusercontent.com/knutkirkhorn/job-listing-notifier/main/media/online.png)
 ![TIHLDE notifiction](https://raw.githubusercontent.com/knutkirkhorn/job-listing-notifier/main/media/tihlde.png)
-
-## License
-MIT © [Knut Kirkhorn](https://github.com/knutkirkhorn/job-listing-notifier/blob/main/LICENSE)

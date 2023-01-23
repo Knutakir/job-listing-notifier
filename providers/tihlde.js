@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import got from 'got';
+import getPackageUserAgent from 'package-user-agent';
 import config from '../config.js';
-import util from '../util.js';
 
 const {jobLocation} = config;
 const apiUrl = config.tihldeAPIUrl;
@@ -12,7 +12,8 @@ const listingUrlPath = config.tihldeListingUrlPath;
 let oldJobListings = [];
 
 async function getNewJobListings() {
-    const response = await got(apiUrl, {headers: util.httpHeader});
+    const packageUserAgent = await getPackageUserAgent();
+    const response = await got(apiUrl, {headers: packageUserAgent});
     const body = JSON.parse(response.body);
     const jobListings = body.results;
 

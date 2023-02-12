@@ -35,7 +35,7 @@
     "discord-webhook-wrapper": "^1.0.0",
     "discord.js": "^13.8.0",
     "dotenv": "^16.0.1",
-    "got": "^12.1.0",
+    "got": "^12.5.3",
     "package-user-agent": "^1.0.0"
   },
   "devDependencies": {

@@ -30,10 +30,10 @@ This will pull the image from [Docker Hub](https://hub.docker.com/) and run the 
 
 ```sh
 # Providing Discord Webhook URL
-$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> knutkirkhorn/job-listing-notifier
+docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> knutkirkhorn/job-listing-notifier
 
 # Providing job location and job type
-$ docker run -d \
+docker run -d \
     -e DISCORD_WEBHOOK_URL=<URL_HERE> \
     -e JOB_LOCATION="Trondheim" \
     -e ABAKUS_JOB_TYPE="full_time" \
@@ -45,13 +45,13 @@ $ docker run -d \
 
 ```sh
 # Build container from source
-$ docker build -t job-listing-notifier .
+docker build -t job-listing-notifier .
 
 # Run the built container with default configuration
-$ docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> job-listing-notifier
+docker run -d -e DISCORD_WEBHOOK_URL=<URL_HERE> job-listing-notifier
 
 # Providing job location and job type
-$ docker run -d \
+docker run -d \
     -e DISCORD_WEBHOOK_URL=<URL_HERE> \
     -e JOB_LOCATION="Trondheim" \
     -e ABAKUS_JOB_TYPE="full_time" \
@@ -63,10 +63,10 @@ $ docker run -d \
 
 ```sh
 # Install
-$ npm install
+npm install
 
 # Run
-$ npm start
+npm start
 ```
 
 ### Environment variables
